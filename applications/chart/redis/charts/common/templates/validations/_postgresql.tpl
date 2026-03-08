@@ -16,7 +16,7 @@ Params:
 {{- define "common.validations.values.postgresql.passwords" -}}
   {{- $existingSecret := include "common.postgresql.values.existingSecret" . -}}
   {{- $enabled := include "common.postgresql.values.enabled" . -}}
-  {{- $valueKeyPostgresqlPassword := include "common.postgresql.values.key.postgressPassword" . -}}
+  {{- $valueKeyPostgresqlPassword := include "common.postgresql.values.key.postgresPassword" . -}}
   {{- $valueKeyPostgresqlReplicationEnabled := include "common.postgresql.values.key.replicationPassword" . -}}
   {{- if and (or (not $existingSecret) (eq $existingSecret "\"\"")) (eq $enabled "true") -}}
     {{- $requiredPasswords := list -}}
@@ -80,14 +80,14 @@ Usage:
 {{- end -}}
 
 {{/*
-Auxiliary function to get the right value for the key postgressPassword.
+Auxiliary function to get the right value for the key postgresPassword.
 
 Usage:
-{{ include "common.postgresql.values.key.postgressPassword" (dict "subchart" "true" "context" $) }}
+{{ include "common.postgresql.values.key.postgresPassword" (dict "subchart" "true" "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether postgresql is used as subchart or not. Default: false
 */}}
-{{- define "common.postgresql.values.key.postgressPassword" -}}
+{{- define "common.postgresql.values.key.postgresPassword" -}}
   {{- $globalValue := include "common.postgresql.values.use.global" (dict "key" "postgresqlUsername" "context" .context) -}}
 
   {{- if not $globalValue -}}
