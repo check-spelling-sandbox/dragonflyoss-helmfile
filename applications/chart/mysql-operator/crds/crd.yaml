@@ -379,7 +379,7 @@ spec:
                     # These are only supported for development purpose:
                     #dbUser:
                     #  type: object
-                    #  description: "MySQL user accoutn to be used for collecting metrics"
+                    #  description: "MySQL user account to be used for collecting metrics"
                     #  properties:
                     #    name:
                     #      type: string
