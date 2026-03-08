@@ -949,7 +949,7 @@ Follow the following steps:
        save ""
     ```
 
-    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be neccessary for the temporal cluster you're creating to upload the dump.*
+    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be necessary for the temporal cluster you're creating to upload the dump.*
 
 - Start the new cluster to create the PVCs. Use the command below as an example:
 
