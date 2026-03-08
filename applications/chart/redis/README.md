@@ -691,7 +691,7 @@ sentinel:
 
 :warning: This is currently limited to clusters in which Sentinel and Redis run on the same node! :warning:
 
-Please also note that the external sentinel must be listening on port `26379`, and this is currently not configurable.
+Please note that the external sentinel must be listening on port `26379`, and this is currently not configurable.
 
 Once the Kubernetes Redis Deployment is online and confirmed to be working with the existing cluster, the configuration can then be removed and the cluster will remain connected.
 
