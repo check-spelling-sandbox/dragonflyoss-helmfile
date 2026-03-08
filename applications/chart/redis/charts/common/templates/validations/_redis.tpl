@@ -65,7 +65,7 @@ Params:
 {{- end -}}
 
 {{/*
-Checks whether the redis chart's includes the standarizations (version >= 14)
+Checks whether the redis chart's includes the standardizations (version >= 14)
 
 Usage:
 {{ include "common.redis.values.standarized.version" (dict "context" $) }}
