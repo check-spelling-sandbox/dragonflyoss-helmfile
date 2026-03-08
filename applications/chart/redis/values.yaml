@@ -102,7 +102,7 @@ image:
   repository: bitnami/redis
   tag: 7.2.4-debian-12-r9
   digest: ""
-  ## Specify a imagePullPolicy
+  ## Specify an imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
   ##
@@ -513,7 +513,7 @@ master:
     ## @param master.persistence.dataSource Custom PVC data source
     ##
     dataSource: {}
-    ## @param master.persistence.existingClaim Use a existing PVC which must be created manually before bound
+    ## @param master.persistence.existingClaim Use an existing PVC which must be created manually before bound
     ## NOTE: requires master.persistence.enabled: true
     ##
     existingClaim: ""
@@ -975,7 +975,7 @@ replica:
     ## @param replica.persistence.dataSource Custom PVC data source
     ##
     dataSource: {}
-    ## @param replica.persistence.existingClaim Use a existing PVC which must be created manually before bound
+    ## @param replica.persistence.existingClaim Use an existing PVC which must be created manually before bound
     ## NOTE: requires replica.persistence.enabled: true
     ##
     existingClaim: ""
@@ -1110,7 +1110,7 @@ sentinel:
     repository: bitnami/redis-sentinel
     tag: 7.2.4-debian-12-r7
     digest: ""
-    ## Specify a imagePullPolicy
+    ## Specify an imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
     ##
@@ -1148,7 +1148,7 @@ sentinel:
   redisShutdownWaitFailover: true
   ## Sentinel timing restrictions
   ## @param sentinel.downAfterMilliseconds Timeout for detecting a Redis&reg; node is down
-  ## @param sentinel.failoverTimeout Timeout for performing a election failover
+  ## @param sentinel.failoverTimeout Timeout for performing an election failover
   ##
   downAfterMilliseconds: 60000
   failoverTimeout: 180000
@@ -2030,7 +2030,7 @@ kubectl:
     repository: bitnami/kubectl
     tag: 1.29.2-debian-12-r3
     digest: ""
-    ## Specify a imagePullPolicy
+    ## Specify an imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
     ##

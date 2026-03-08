@@ -785,7 +785,7 @@ spec:
                                         description: "Name of the field added to the log record with value taken from a field with path stored in fieldPath"
                                       fieldPath:
                                         type: string
-                                        description: "Value for the field fieldName. The path should be of the same syntax as the one used for mounting environment variables from field reference - valueFrom.fieldRef.fieldPath . The field will be mounted in the pod as a environment variable, prefixed with a prefix and used then added to the log record. Examples for fieldRef are : spec.nodeName, metadata.namespace, status.podIP, etc."
+                                        description: "Value for the field fieldName. The path should be of the same syntax as the one used for mounting environment variables from field reference - valueFrom.fieldRef.fieldPath . The field will be mounted in the pod as an environment variable, prefixed with a prefix and used then added to the log record. Examples for fieldRef are : spec.nodeName, metadata.namespace, status.podIP, etc."
                                 resourceFields:
                                   type: array
                                   items:
