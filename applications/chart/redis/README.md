@@ -957,7 +957,7 @@ Follow the following steps:
     helm install new-redis  -f values.yaml .  --set cluster.enabled=true  --set cluster.slaveCount=3
     ```
 
-- Now that the PVC were created, stop it and copy the *dump.rdp* file on the persisted data by using a helping pod.
+- Now that the PVC were created, stop it and copy the *dump.rdb* file on the persisted data by using a helping pod.
 
     ```text
     $ helm delete new-redis
