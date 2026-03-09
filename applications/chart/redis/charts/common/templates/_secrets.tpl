@@ -139,7 +139,7 @@ The order in which this function returns a secret password:
 {{- end -}}
 
 {{/*
-Reuses the value from an existing secret, otherwise sets its value to a default value.
+Reuses the value from an existing secret; otherwise, sets its value to a default value.
 
 Usage:
 {{ include "common.secrets.lookup" (dict "secret" "secret-name" "key" "keyName" "defaultValue" .Values.myValue "context" $) }}
