@@ -25,10 +25,10 @@ global:
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
-    ## Compatibility adaptations for Openshift
+    ## Compatibility adaptations for OpenShift
     ##
     openshift:
-      ## @param global.compatibility.openshift.adaptSecurityContext Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation)
+      ## @param global.compatibility.openshift.adaptSecurityContext Adapt the securityContext sections of the deployment to make them compatible with OpenShift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is OpenShift), force (perform the adaptation always), disabled (do not perform adaptation)
       ##
       adaptSecurityContext: disabled
 ## @section Common parameters
