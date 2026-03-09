@@ -1043,7 +1043,7 @@ When that's the case, the rolling update can cause replicas to temporarily stop 
 For example, on a rolling update `master-0` and `replica-2` are updated first from version v6.2 to v7.0; `replica-0` and `replica-1` won't be able to start a full sync with `master-0` because they are still running v6.2 and can't support the RDB format from version 7.0 that master is now using.
 This issue can be mitigated by splitting the upgrade into two stages: one for all replicas and another for any master.
 
-- Stage 1 (replicas only, as there's no master with an ordinal higher than 99):
+- Stage 1 (replicas only, as there's no master with an ordinal greater than 99):
 `helm upgrade oci://REGISTRY_NAME/REPOSITORY_NAME/redis --set master.updateStrategy.rollingUpdate.partition=99`
 - Stage 2 (anything else that is not up to date, in this case only master):
 `helm upgrade oci://REGISTRY_NAME/REPOSITORY_NAME/redis`
