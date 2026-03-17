@@ -23,7 +23,7 @@ License information can be found in the [LICENSE](https://github.com/mysql/mysql
 This distribution may include materials developed by third parties. For license
 and attribution notices for these materials, please refer to the `LICENSE` file.
 
-## Pre-requisites
+## Prerequisites
 * Kubernetes 1.21+
 * Helm v3
 

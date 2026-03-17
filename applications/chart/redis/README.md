@@ -77,7 +77,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `global.imagePullSecrets`                             | Global Docker registry secret names as an array                                                                                                                                                                                                                                                                                                                     | `[]`       |
 | `global.storageClass`                                 | Global StorageClass for Persistent Volume(s)                                                                                                                                                                                                                                                                                                                        | `""`       |
 | `global.redis.password`                               | Global Redis&reg; password (overrides `auth.password`)                                                                                                                                                                                                                                                                                                              | `""`       |
-| `global.compatibility.openshift.adaptSecurityContext` | Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation) | `disabled` |
+| `global.compatibility.openshift.adaptSecurityContext` | Adapt the securityContext sections of the deployment to make them compatible with OpenShift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is OpenShift), force (perform the adaptation always), disabled (do not perform adaptation) | `disabled` |
 
 ### Common parameters
 
@@ -217,7 +217,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `master.persistence.labels`                                | Additional custom labels for the PVC                                                                                                                                                                                     | `{}`                     |
 | `master.persistence.selector`                              | Additional labels to match for the PVC                                                                                                                                                                                   | `{}`                     |
 | `master.persistence.dataSource`                            | Custom PVC data source                                                                                                                                                                                                   | `{}`                     |
-| `master.persistence.existingClaim`                         | Use a existing PVC which must be created manually before bound                                                                                                                                                           | `""`                     |
+| `master.persistence.existingClaim`                         | Use an existing PVC which must be created manually before bound                                                                                                                                                           | `""`                     |
 | `master.persistentVolumeClaimRetentionPolicy.enabled`      | Controls if and how PVCs are deleted during the lifecycle of a StatefulSet                                                                                                                                               | `false`                  |
 | `master.persistentVolumeClaimRetentionPolicy.whenScaled`   | Volume retention behavior when the replica count of the StatefulSet is reduced                                                                                                                                           | `Retain`                 |
 | `master.persistentVolumeClaimRetentionPolicy.whenDeleted`  | Volume retention behavior that applies when the StatefulSet is deleted                                                                                                                                                   | `Retain`                 |
@@ -337,7 +337,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `replica.persistence.labels`                                | Additional custom labels for the PVC                                                                                                                                                                                       | `{}`                     |
 | `replica.persistence.selector`                              | Additional labels to match for the PVC                                                                                                                                                                                     | `{}`                     |
 | `replica.persistence.dataSource`                            | Custom PVC data source                                                                                                                                                                                                     | `{}`                     |
-| `replica.persistence.existingClaim`                         | Use a existing PVC which must be created manually before bound                                                                                                                                                             | `""`                     |
+| `replica.persistence.existingClaim`                         | Use an existing PVC which must be created manually before bound                                                                                                                                                             | `""`                     |
 | `replica.persistentVolumeClaimRetentionPolicy.enabled`      | Controls if and how PVCs are deleted during the lifecycle of a StatefulSet                                                                                                                                                 | `false`                  |
 | `replica.persistentVolumeClaimRetentionPolicy.whenScaled`   | Volume retention behavior when the replica count of the StatefulSet is reduced                                                                                                                                             | `Retain`                 |
 | `replica.persistentVolumeClaimRetentionPolicy.whenDeleted`  | Volume retention behavior that applies when the StatefulSet is deleted                                                                                                                                                     | `Retain`                 |
@@ -383,7 +383,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `sentinel.automateClusterRecovery`                           | Automate cluster recovery in cases where the last replica is not considered a good replica and Sentinel won't automatically failover to it.                                                                                  | `false`                          |
 | `sentinel.redisShutdownWaitFailover`                         | Whether the Redis&reg; master container waits for the failover at shutdown (in addition to the Redis&reg; Sentinel container).                                                                                               | `true`                           |
 | `sentinel.downAfterMilliseconds`                             | Timeout for detecting a Redis&reg; node is down                                                                                                                                                                              | `60000`                          |
-| `sentinel.failoverTimeout`                                   | Timeout for performing a election failover                                                                                                                                                                                   | `180000`                         |
+| `sentinel.failoverTimeout`                                   | Timeout for performing an election failover                                                                                                                                                                                   | `180000`                         |
 | `sentinel.parallelSyncs`                                     | Number of replicas that can be reconfigured in parallel to use the new master after a failover                                                                                                                               | `1`                              |
 | `sentinel.configuration`                                     | Configuration for Redis&reg; Sentinel nodes                                                                                                                                                                                  | `""`                             |
 | `sentinel.command`                                           | Override default container command (useful when using custom images)                                                                                                                                                         | `[]`                             |
@@ -691,7 +691,7 @@ sentinel:
 
 :warning: This is currently limited to clusters in which Sentinel and Redis run on the same node! :warning:
 
-Please also note that the external sentinel must be listening on port `26379`, and this is currently not configurable.
+Please note that the external sentinel must be listening on port `26379`, and this is currently not configurable.
 
 Once the Kubernetes Redis Deployment is online and confirmed to be working with the existing cluster, the configuration can then be removed and the cluster will remain connected.
 
@@ -824,7 +824,7 @@ tls.certCAFilename="ca.pem"
 
 The chart optionally can start a metrics exporter for [prometheus](https://prometheus.io). The metrics endpoint (port 9121) is exposed in the service. Metrics can be scraped from within the cluster using something similar as the described in the [example Prometheus scrape configuration](https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml). If metrics are to be scraped from outside the cluster, the Kubernetes API proxy can be utilized to access the endpoint.
 
-If you have enabled TLS by specifying `tls.enabled=true` you also need to specify TLS option to the metrics exporter. You can do that via `metrics.extraArgs`. You can find the metrics exporter CLI flags for TLS [here](https://github.com/oliver006/redis_exporter#command-line-flags). For example:
+If you have enabled TLS by specifying `tls.enabled=true` you also need to specify TLS option to the metrics exporter. You can do that via `metrics.extraArgs`. See the [metrics exporter CLI flags for TLS](https://github.com/oliver006/redis_exporter#command-line-flags). For example:
 
 You can either specify `metrics.extraArgs.skip-tls-verification=true` to skip TLS verification or providing the following values under `metrics.extraArgs` for TLS client authentication:
 
@@ -949,7 +949,7 @@ Follow the following steps:
        save ""
     ```
 
-    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be neccessary for the temporal cluster you're creating to upload the dump.*
+    > *Note that the `Enable AOF` comment belongs to the original config file and what you're actually doing is disabling it. This change will only be necessary for the temporal cluster you're creating to upload the dump.*
 
 - Start the new cluster to create the PVCs. Use the command below as an example:
 
@@ -957,7 +957,7 @@ Follow the following steps:
     helm install new-redis  -f values.yaml .  --set cluster.enabled=true  --set cluster.slaveCount=3
     ```
 
-- Now that the PVC were created, stop it and copy the *dump.rdp* file on the persisted data by using a helping pod.
+- Now that the PVC were created, stop it and copy the *dump.rdb* file on the persisted data by using a helping pod.
 
     ```text
     $ helm delete new-redis
@@ -1043,7 +1043,7 @@ When that's the case, the rolling update can cause replicas to temporarily stop 
 For example, on a rolling update `master-0` and `replica-2` are updated first from version v6.2 to v7.0; `replica-0` and `replica-1` won't be able to start a full sync with `master-0` because they are still running v6.2 and can't support the RDB format from version 7.0 that master is now using.
 This issue can be mitigated by splitting the upgrade into two stages: one for all replicas and another for any master.
 
-- Stage 1 (replicas only, as there's no master with an ordinal higher than 99):
+- Stage 1 (replicas only, as there's no master with an ordinal greater than 99):
 `helm upgrade oci://REGISTRY_NAME/REPOSITORY_NAME/redis --set master.updateStrategy.rollingUpdate.partition=99`
 - Stage 2 (anything else that is not up to date, in this case only master):
 `helm upgrade oci://REGISTRY_NAME/REPOSITORY_NAME/redis`
@@ -1117,7 +1117,7 @@ This major version updates the Redis&reg; docker image version used from `6.0` t
 
 ### To 12.3.0
 
-This version also introduces `bitnami/common`, a [library chart](https://helm.sh/docs/topics/library_charts/#helm) as a dependency. More documentation about this new utility could be found [here](https://github.com/bitnami/charts/tree/main/bitnami/common#bitnami-common-library-chart). Please, make sure that you have updated the chart dependencies before executing any upgrade.
+This version also introduces `bitnami/common`, a [library chart](https://helm.sh/docs/topics/library_charts/#helm) as a dependency. See [documentation about this new utility](https://github.com/bitnami/charts/tree/main/bitnami/common#bitnami-common-library-chart). Please, make sure that you have updated the chart dependencies before executing any upgrade.
 
 ### To 12.0.0
 
@@ -1125,7 +1125,7 @@ This version also introduces `bitnami/common`, a [library chart](https://helm.sh
 
 #### What changes were introduced in this major version?
 
-- Previous versions of this Helm Chart use `apiVersion: v1` (installable by both Helm 2 and 3), this Helm Chart was updated to `apiVersion: v2` (installable by Helm 3 only). [Here](https://helm.sh/docs/topics/charts/#the-apiversion-field) you can find more information about the `apiVersion` field.
+- Previous versions of this Helm Chart use `apiVersion: v1` (installable by both Helm 2 and 3), this Helm Chart was updated to `apiVersion: v2` (installable by Helm 3 only). Learn more about the [`apiVersion`](https://helm.sh/docs/topics/charts/#the-apiversion-field) field.
 - The different fields present in the *Chart.yaml* file has been ordered alphabetically in a homogeneous way for all the Bitnami Helm Charts
 
 #### Considerations when upgrading to this version
@@ -1142,7 +1142,7 @@ This version also introduces `bitnami/common`, a [library chart](https://helm.sh
 
 ### To 11.0.0
 
-When using sentinel, a new statefulset called `-node` was introduced. This will break upgrading from a previous version where the statefulsets are called master and slave. Hence the PVC will not match the new naming and won't be reused. If you want to keep your data, you will need to perform a backup and then a restore the data in this new version.
+When using sentinel, a new statefulset called `-node` was introduced. This will break upgrading from a previous version where the statefulsets are called master and slave. Hence the PVC will not match the new naming and won't be reused. If you want to keep your data, you will need to perform a backup and then restore the data in this new version.
 
 When deployed with sentinel enabled, only a group of nodes is deployed and the master/slave role is handled in the group. To avoid breaking the compatibility, the settings for this nodes are given through the `slave.xxxx` parameters in `values.yaml`
 
@@ -1215,7 +1215,7 @@ This version removes the `chart` label from the `spec.selector.matchLabels`
 which is immutable since `StatefulSet apps/v1beta2`. It has been inadvertently
 added, causing any subsequent upgrade to fail. See <https://github.com/helm/charts/issues/7726>.
 
-It also fixes <https://github.com/helm/charts/issues/7726> where a deployment `extensions/v1beta1` can not be upgraded if `spec.selector` is not explicitly set.
+It also fixes <https://github.com/helm/charts/issues/7726> where a deployment `extensions/v1beta1` cannot be upgraded if `spec.selector` is not explicitly set.
 
 Finally, it fixes <https://github.com/helm/charts/issues/7803> by removing mutable labels in `spec.VolumeClaimTemplate.metadata.labels` so that it is upgradable.
 

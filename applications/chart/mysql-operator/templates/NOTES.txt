@@ -1,7 +1,7 @@
 Create an MySQL InnoDB Cluster by executing:
 1. When using a source distribution / git clone: `helm install [cluster-name] -n [ns-name] ~/helm/mysql-innodbcluster`
 2. When using the Helm repo from ArtifactHub
-2.1 With self signed certificates
+2.1 With self-signed certificates
     export NAMESPACE="your-namespace"
     # in case the namespace doesn't exist, please pass --create-namespace
     helm install my-mysql-innodbcluster mysql-operator/mysql-innodbcluster -n $NAMESPACE \
